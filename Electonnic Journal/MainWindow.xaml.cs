@@ -20,9 +20,40 @@ namespace Electonnic_Journal
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool leftPanelIsOpen;
+        GridLengthConverter converter = new GridLengthConverter();
+        GridLength minimazeLeftPanel;
+        GridLength maximazeLeftPanel;
+
         public MainWindow()
         {
             InitializeComponent();
+            leftPanelIsOpen = true;
+            maximazeLeftPanel = LeftPanel.Width;
+            minimazeLeftPanel = new GridLength(OpenPanelButton.Height);
+        }
+
+        private void OpenPanelButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (leftPanelIsOpen)
+            {
+                // Скрываем. Заменяем картинками
+                LeftPanel.Width = minimazeLeftPanel;
+                OpenPanelButton.Content = ">>";
+                SaveButton.Content = "";
+                UploadButton.Content = "";
+                SettingButton.Content = "";
+            }
+            else
+            {
+                // расскрываем. Возвращаем текст
+                LeftPanel.Width = maximazeLeftPanel;
+                OpenPanelButton.Content = "Скрыть панель";
+                SaveButton.Content = "Сохранить";
+                UploadButton.Content = "Загрузить";
+                SettingButton.Content = "Настройки";
+            }
+            leftPanelIsOpen = !leftPanelIsOpen;
         }
     }
 }

@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Electonnic_Journal"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Электронный журнал" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background"  Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Margin" Value="0, 3, 0, 2"/>
+            <Setter Property="Height" Value="35"/>
+            
+            <Setter Property="TextBlock.FontFamily" Value="Calibri"/>
+            <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+            <Setter Property="TextBlock.FontSize"   Value="14"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
+        <!-- Боковое меню -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="LeftPanel" Width="150"/>
+            <ColumnDefinition Name="MainPanel" Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="Salmon">
+            <Button Name="OpenPanelButton" Content="Скрыть панель" Click="OpenPanelButton_Click"/>
+            <Button Name="SaveButton"    Content="Сохранить"/>
+            <Button Name="UploadButton"  Content="Загрузить"/>
+            <Button Name="SettingButton" Content="Настройки"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" AllowDrop="True" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Перетащи в меня текст" FontSize="36"/>
+        </StackPanel>
         
     </Grid>
 </Window>
