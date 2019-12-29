@@ -5,40 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Electonnic_Journal"
         mc:Ignorable="d"
-        Title="Электронный журнал" Height="450" Width="800">
+        Title="Электронный журнал" Height="450" Width="800"
+        Name="g_Window">
 
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="Background"  Value="White"/>
-            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Background"  Value="WhiteSmoke"/>
+            <Setter Property="BorderBrush" Value="WhiteSmoke"/>
             <Setter Property="Margin" Value="0, 3, 0, 2"/>
             <Setter Property="Height" Value="35"/>
-            
+
             <Setter Property="TextBlock.FontFamily" Value="Calibri"/>
             <Setter Property="TextBlock.FontWeight" Value="Bold"/>
-            <Setter Property="TextBlock.FontSize"   Value="14"/>
+            <Setter Property="TextBlock.FontSize"   Value="15"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="TextBlock.FontSize" Value="15"/>
+            <Setter Property="TextBlock.FontFamily" Value="Calibri"/>
         </Style>
     </Window.Resources>
-    
+
     <Grid>
-        <!-- Боковое меню -->
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Name="LeftPanel" Width="150"/>
             <ColumnDefinition Name="MainPanel" Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Боковое меню -->
         <StackPanel Grid.Column="0" Background="Salmon">
-            <Button Name="OpenPanelButton" Content="Скрыть панель" Click="OpenPanelButton_Click"/>
+            <Button Name="OpenPanelButton" Content="Скрыть панель" 
+                    Click="OpenPanelButton_Click"
+                    Margin="0, 0, 0, 5"/>
             <Button Name="SaveButton"    Content="Сохранить"/>
             <Button Name="UploadButton"  Content="Загрузить"/>
             <Button Name="SettingButton" Content="Настройки"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" AllowDrop="True" 
+        <!-- Главное окно -->
+        <StackPanel Name="StackMainPan" Grid.Column="1" AllowDrop="True"
+                    DragEnter="ElemDragEnter"
+                    DragLeave="ElemDragLeave"
+                    DragDrop.Drop="ElemDragDrop"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center">
-            <TextBlock Text="Перетащи в меня текст" FontSize="36"/>
+
+            <TextBlock Name="LeftPanelTextBlock" Text="Перетащи в меня файл" 
+                       FontSize="36" TextAlignment="Center" />
         </StackPanel>
         
+
     </Grid>
 </Window>
